@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "ecommerce",
   "version": "1.0.0",
   "description": "",
