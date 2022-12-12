@@ -15,7 +15,8 @@ loginRouter.post('/login',async function (req, res, next) {
         let message = 'Không có password'
         res.status(400).send(message);
     }
-    const User = getAccount(email,pwd);
+    const User = await getAccount(email,pwd);
+    console.log(User)
     if(!User){
         let message = 'Sai email hoặc pwd'
         res.status(401).send(message);
