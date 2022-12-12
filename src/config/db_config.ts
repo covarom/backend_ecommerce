@@ -10,9 +10,7 @@ const pool = new Pool({connectionString: envConfig.PG_CONNECTION_STRING});
 
 
 async function query(text: any) {
-
     const {rows} = await pool.query(text);
-
     return rows;
 
 }

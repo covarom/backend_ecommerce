@@ -5,11 +5,7 @@ import jwt from 'jsonwebtoken';
 const loginRouter: express.Router = express.Router();
 loginRouter.post('/login',async function (req, res, next) {
     try {
-        console.log('start')
-        console.log(req.body)
-        console.log('start')
         const email=req.body.email;
-        console.log(req.body)
         const pwd = req.body.password;
     if(!email){
         let message = 'Không có email'
