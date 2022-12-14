@@ -7,7 +7,6 @@ export async function getAccount(email:string,password:string) {
     return selectRows;
 }
 export async function createJsonRes(rows: any) {
-    var jsonObject;
     var contentsArr = [];
     if (rows && rows.length > 0) {       
         for (var i = 0; i < rows.length; i++) {
@@ -26,13 +25,9 @@ export async function createJsonRes(rows: any) {
             };
             contentsArr.push(contents);
         }
-        jsonObject = {
-            contents: contentsArr,
-        };
+       
     } else {
-        jsonObject = {
-            contents: [],
-        };
+        contentsArr = [];
     }
-    return jsonObject;
+    return contentsArr;
 }

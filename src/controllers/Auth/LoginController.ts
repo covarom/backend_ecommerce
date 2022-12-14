@@ -15,15 +15,14 @@ loginRouter.post('/login',async function (req, res, next) {
         let message = 'Không có password'
         res.status(400).send(message);
     }
-    const User = await getAccount(email,pwd);
-    console.log(User)
-    if(!User){
+    const Users = await getAccount(email,pwd);
+    if(!Users){
         let message = 'Sai email hoặc pwd'
         res.status(401).send(message);
     }else{
         const data = req.body;
         const accessToken = jwt.sign(data,process.env.ACCESS_TOKEN_SECRET,{expiresIn: '30m'})
-        const UserInforJson = createJsonRes(User);
+        const UserInforJson = await createJsonRes(Users);
         res.json({
             'accessToken':accessToken,
             'UserInforJson':UserInforJson,

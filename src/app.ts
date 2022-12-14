@@ -7,6 +7,10 @@ import {envConfig} from './config/env_config';
 
 
 const app = express();
+// 👇️ handle uncaught exceptions
+process.on('uncaughtException', function (err) {
+    console.log(err);
+  });
 if (envConfig.NODE_ENV === "development") {
     app.use(cors());
 }
