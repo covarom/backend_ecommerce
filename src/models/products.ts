@@ -8,8 +8,7 @@ export async function getAllProducts() {
     return selectRows;
 }
 
-export async function createJsonProductRes(product: any, imgList) {
-    var contentsArr = [];              
+export async function createJsonProductRes(product: any, imgList) {            
             var id = product.id; 
             var contents = {
                 id: id, //ID
@@ -27,8 +26,8 @@ export async function createJsonProductRes(product: any, imgList) {
                 created_at: product.created_at,  
                 modified_at: product.modified_at,  
             };
-            contentsArr.push(contents);     
-    return contentsArr;
+   
+    return contents;
 }
 export async function createJsonProductListRes(product: any) {
     var contentsArr = [];                   
