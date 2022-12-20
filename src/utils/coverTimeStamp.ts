@@ -5,5 +5,4 @@ export function coverTimeStamp(time:any) {
     var utcMonthFromTS = dateObject.getUTCMonth() + 1;
     var utcDateFromTS = dateObject.getUTCDate();
     return utcDateFromTS + "-"+ utcMonthFromTS +"-"+ utcYearFromTS+ " 00:00:00";
-
 }

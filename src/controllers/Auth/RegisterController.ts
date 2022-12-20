@@ -26,7 +26,7 @@ registerRouter.post('/register',async function (req, res, next) {
     const date = Date.now();
     const dateTimeStamp = coverTimeStamp (date);
     const id =uuidv4();
-    const result = registerUser(id,email,pwd,fist_name,last_name,phone,role);
+    const result = await registerUser(id,email,pwd,fist_name,last_name,phone,role);
 
     if(result){
         let message = 'Register successfully !!!'
