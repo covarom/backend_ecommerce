@@ -1,8 +1,8 @@
 import { db } from "../config/db_config";
-const accountsTb = "accounts";
+const table = "accounts";
 export async function getAccount(email:string,password:string) {
     var selectRows;
-    var selectQuery = `SELECT * FROM ${accountsTb} where email = '${email}' and password = '${password}'`;
+    var selectQuery = `SELECT * FROM ${table} where email = '${email}' and password = '${password}'`;
     selectRows = await db.query(selectQuery);
     return selectRows;
 }

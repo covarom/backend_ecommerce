@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const loginRouter: express.Router = express.Router();
 loginRouter.post('/login',async function (req, res, next) {
+    res.setHeader('Content-Type', 'application/json');
     try {
         const email=req.body.email;
         const pwd = req.body.password;
@@ -18,11 +19,14 @@ loginRouter.post('/login',async function (req, res, next) {
     const Users = await getAccount(email,pwd);
     if(!Users){
         let message = 'Sai email hoặc pwd'
-        res.status(401).send(message);
+        return res.status(401).json(message);
     }else{
+        var accessToken;
         const data = req.body;
-        const accessToken = jwt.sign(data,process.env.ACCESS_TOKEN_SECRET,{expiresIn: '30m'})
         const UserInforJson = await createJsonRes(Users);
+        if(UserInforJson){
+             accessToken = jwt.sign(data,process.env.ACCESS_TOKEN_SECRET,{expiresIn: '30m'})       
+        }  
         res.json({
             'accessToken':accessToken,
             'UserInforJson':UserInforJson,
@@ -33,7 +37,17 @@ loginRouter.post('/login',async function (req, res, next) {
     }
 })
 
-
+    function authenToken(req, res, next){
+    const authorizationHeader = req.headers['authorization'];
+    const token = authorizationHeader.split(' ')[1];
+    if(!token){
+        res.sendStatus(401);
+    }
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+        if(err) res.sendStatus(403);
+        next()
+    })
+    }
 
 
 export default loginRouter;

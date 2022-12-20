@@ -2,15 +2,22 @@ require('dotenv').config();
 import express from 'express';
 import helloRouter from './controllers/HelloController';
 import loginRouter from './controllers/Auth/LoginController';
+import productRouter from './controllers/Products/ProductController';
 import cors from 'cors';
 import {envConfig} from './config/env_config';
 
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.json());
 // 👇️ handle uncaught exceptions
 process.on('uncaughtException', function (err) {
     console.log(err);
   });
+
+  app.use(bodyParser.json());
+
+
 if (envConfig.NODE_ENV === "development") {
     app.use(cors());
 }
@@ -21,6 +28,7 @@ app.use(express.json());
 // });
 app.use('/test', helloRouter);
 app.use('/api',loginRouter);
+app.use('/api',productRouter);
 const port = process.env.PORT || 3003
 app.listen(port);
 //console.log(process.env)
