@@ -1,7 +1,8 @@
 import * as express from 'express';
 import {getAccountByEmail,registerUser} from '../../models/accounts'
-import {coverTimeStamp} from '../../utils/coverTimestamp'
+import {coverTimeStamp} from '../../utils/coverTimeStamp'
 import { v4 as uuidv4 } from 'uuid';
+import timestamp from 'time-stamp';
 
 const registerRouter: express.Router = express.Router();
 
@@ -24,9 +25,9 @@ registerRouter.post('/register',async function (req, res, next) {
         return res.status(400).send(message);
     }
     const date = Date.now();
-    const dateTimeStamp = coverTimeStamp (date);
+    const dateTimeStamp = timestamp ('YYYY:MM:DD HH:mm:ss');
     const id =uuidv4();
-    const result = await registerUser(id,email,pwd,fist_name,last_name,phone,role);
+    const result = await registerUser(id,email,pwd,fist_name,last_name,phone,role,dateTimeStamp,dateTimeStamp);
 
     if(result){
         let message = 'Register successfully !!!'

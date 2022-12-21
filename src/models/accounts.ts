@@ -13,10 +13,10 @@ export async function getAccountByEmail(email:string) {
     return selectRows;
 }
 
-export async function registerUser(id:string,email:string, pwd:string, fist_name:string,last_name: string,phone: string,role:string) {
+export async function registerUser(id:string,email:string, pwd:string, fist_name:string,last_name: string,phone: string,role:string, created_at:any, modified_at:any) {
     var selectRows;
     var insertQuery = `INSERT INTO accounts (id, email, password, first_name,last_name,phone,status,rode_id,created_at,modified_at)
-    VALUES ('${id}','${email}','${pwd}','${fist_name}','${last_name}','${phone}','1',${role},'2022-12-12 00:00:00','2022-12-12 00:00:00')`;
+    VALUES ('${id}','${email}','${pwd}','${fist_name}','${last_name}','${phone}','1',${role},'${created_at}','${modified_at}')`;
     selectRows = await db.query(insertQuery);
     return selectRows;
 }
