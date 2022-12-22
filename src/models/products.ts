@@ -29,11 +29,4 @@ export async function createJsonProductRes(product: any, imgList) {
    
     return contents;
 }
-export async function createJsonProductListRes(product: any) {
-    var contentsArr = [];                   
-            var contents = {
-                product
-            };
-            contentsArr.push(contents);     
-    return contentsArr;
-}
+
