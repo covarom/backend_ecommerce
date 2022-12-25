@@ -8,6 +8,13 @@ export async function getAllProducts() {
     return selectRows;
 }
 
+export async function getProductByCategory(idCate: string) {
+    var selectRows;
+    var selectQuery = `SELECT * FROM ${table} WHERE category_id = '${idCate}'`;
+    selectRows = await db.query(selectQuery);
+    return selectRows;
+}
+
 export async function createJsonProductRes(product: any, imgList) {            
             var id = product.id; 
             var contents = {
