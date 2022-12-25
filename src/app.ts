@@ -4,6 +4,7 @@ import helloRouter from './controllers/HelloController';
 import loginRouter from './controllers/Auth/LoginController';
 import registerRouter from './controllers/Auth/RegisterController';
 import productRouter from './controllers/Products/ProductController';
+import categoryRouter from './controllers/Products/CategoryController';
 import cors from 'cors';
 import {envConfig} from './config/env_config';
 
@@ -31,6 +32,7 @@ app.use('/test', helloRouter);
 app.use('/api',loginRouter);
 app.use('/api',productRouter);
 app.use('/api',registerRouter);
+app.use('/api',categoryRouter);
 const port = process.env.PORT || 3003
 app.listen(port);
 //console.log(process.env)
