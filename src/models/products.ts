@@ -22,14 +22,14 @@ export async function getProductById(id: string) {
     return selectRows;
 }
 
-export async function createJsonProductRes(product: any, imgList) {            
+export async function createJsonProductRes(product: any, imgList,category) {            
             var id = product.id; 
             var contents = {
                 id: id, //ID
                 name: product.name, 
                 price: product.price, 
                 sale: product.sale,  
-                category_id: product.category_id,  
+                category,  
                 imageList: imgList,
                 content: product.content,  
                 quantity: product.quantity,  

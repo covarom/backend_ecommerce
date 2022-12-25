@@ -8,6 +8,13 @@ export async function getAllCategorys() {
     return selectRows;
 }
 
+export async function getCategorysById(id: string) {
+    var selectRows;
+    var selectQuery = `SELECT * FROM ${table} WHERE id = '${id}'`;
+    selectRows = await db.query(selectQuery);
+    return selectRows;
+}
+
 export async function createJsonRes(rows: any) {
     var contentsArr = [];
     if (rows && rows.length > 0) {       

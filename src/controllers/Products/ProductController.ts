@@ -1,6 +1,7 @@
 import * as express from 'express';
 import {getAllProducts, createJsonProductRes, getProductByCategory,getProductById} from '../../models/products';
-import {getProductImageById} from '../../models/product_img'
+import {getProductImageById} from '../../models/product_img';
+import {getCategorysById} from '../../models/categorys'
 
 const productRouter: express.Router = express.Router();
 
@@ -14,7 +15,8 @@ productRouter.get('/getAllProduct',async function (req, res, next) {
      }    
         const productItemList = productLists.map(async  product => {
             const img_list =  await getProductImageById(product.id)
-            const productItem = await createJsonProductRes(product,img_list);  
+            const category = await getCategorysById(product.category_id);
+            const productItem = await createJsonProductRes(product,img_list,category);  
             return productItem;
        });
        const productItemListRes = await Promise.all(productItemList)
@@ -40,7 +42,8 @@ productRouter.get('/getAllProduct',async function (req, res, next) {
      }    
         const productItemList = productLists.map(async  product => {
             const img_list =  await getProductImageById(product.id)
-            const productItem = await createJsonProductRes(product,img_list);  
+            const category = await getCategorysById(product.category_id);
+            const productItem = await createJsonProductRes(product,img_list,category);  
             return productItem;
        });
        const productItemListRes = await Promise.all(productItemList)
@@ -67,7 +70,8 @@ productRouter.get('/getAllProduct',async function (req, res, next) {
      }    
         const productItemList = productLists.map(async  product => {
             const img_list =  await getProductImageById(product.id)
-            const productItem = await createJsonProductRes(product,img_list);  
+            const category = await getCategorysById(product.category_id);
+            const productItem = await createJsonProductRes(product,img_list,category);  
             return productItem;
        });
        const productItemListRes = await Promise.all(productItemList)
