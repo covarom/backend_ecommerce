@@ -15,6 +15,13 @@ export async function getProductByCategory(idCate: string) {
     return selectRows;
 }
 
+export async function getProductById(id: string) {
+    var selectRows;
+    var selectQuery = `SELECT * FROM ${table} WHERE id = '${id}'`;
+    selectRows = await db.query(selectQuery);
+    return selectRows;
+}
+
 export async function createJsonProductRes(product: any, imgList) {            
             var id = product.id; 
             var contents = {
